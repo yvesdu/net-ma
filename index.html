@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix M&A Dashboard</title>
+    <!-- Include Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Include custom styles -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-title">
+          <h1>Netflix M&A Analysis</h1>
+          <p class="subtitle">Strategic Dashboard</p>
+        </div>
+        <div class="scenario-buttons">
+          <button class="btn active" data-scenario="base">Base Case</button>
+          <button class="btn" data-scenario="bull">Bull Case</button>
+          <button class="btn" data-scenario="bear">Bear Case</button>
+        </div>
+      </header>
+
+      <!-- Key Metrics -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-header">Revenue</div>
+          <div class="metric-value">$33.7B</div>
+          <div class="metric-change positive">+7.2%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">Operating Margin</div>
+          <div class="metric-value">21.0%</div>
+          <div class="metric-change positive">+3.0%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">Subscribers</div>
+          <div class="metric-value">260.3M</div>
+          <div class="metric-change positive">+29.5M</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">ARPU</div>
+          <div class="metric-value">$11.64</div>
+          <div class="metric-change negative">-0.12</div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <div class="tabs">
+          <button class="tab-btn active" data-tab="overview">Overview</button>
+          <button class="tab-btn" data-tab="content">Content Strategy</button>
+          <button class="tab-btn" data-tab="regional">Regional Analysis</button>
+          <button class="tab-btn" data-tab="synergies">Synergy Tracking</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content active" id="overview">
+          <div class="chart-container">
+            <canvas id="overviewChart"></canvas>
+          </div>
+        </div>
+
+        <div class="tab-content" id="content">
+          <div class="chart-container">
+            <canvas id="contentChart"></canvas>
+          </div>
+        </div>
+
+        <div class="tab-content" id="regional">
+          <div class="chart-container">
+            <canvas id="regionalChart"></canvas>
+          </div>
+        </div>
+
+        <div class="tab-content" id="synergies">
+          <div class="chart-container">
+            <canvas id="synergyChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="charts.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
