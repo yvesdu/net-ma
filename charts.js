@@ -1,22 +1,104 @@
 function initializeCharts() {
-  // Overview Chart - Revenue and Margin Trends
-  const overviewCtx = document.getElementById("overviewChart").getContext("2d");
-  window.overviewChart = new Chart(overviewCtx, {
+  createFinancialChart();
+  createRegionalChart();
+  createEBITDAChart();
+  createROIChart();
+}
+
+function createFinancialChart() {
+  const ctx = document.getElementById("financialChart");
+  if (!ctx) return;
+
+  return new Chart(ctx, {
     type: "line",
     data: {
-      labels: ["2020", "2021", "2022", "2023"],
+      labels: ["2021", "2022", "2023"],
       datasets: [
         {
-          label: "Revenue ($B)",
-          data: [],
-          borderColor: "rgb(229, 9, 20)",
-          tension: 0.1,
+          label: "Revenue",
+          data: [29.7, 31.6, 33.7],
+          borderColor: "#e50914",
+          backgroundColor: "rgba(229, 9, 20, 0.1)",
+          tension: 0.3,
         },
         {
-          label: "Operating Margin (%)",
-          data: [],
-          borderColor: "rgb(45, 55, 72)",
-          tension: 0.1,
+          label: "EBITDA",
+          data: [6.4, 6.0, 7.3],
+          borderColor: "#141414",
+          backgroundColor: "rgba(20, 20, 20, 0.1)",
+          tension: 0.3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "top",
+          align: "end",
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: false,
+          ticks: {
+            callback: (value) => `$${value}B`,
+          },
+        },
+      },
+    },
+  });
+}
+
+function createRegionalChart() {
+  const ctx = document.getElementById("regionChart");
+  if (!ctx) return;
+
+  return new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["UCAN", "EMEA", "LATAM", "APAC"],
+      datasets: [
+        {
+          data: [14.9, 10.6, 4.4, 3.8],
+          backgroundColor: ["#e50914", "#141414", "#564d4d", "#8c8c8c"],
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "right",
+          align: "center",
+        },
+      },
+    },
+  });
+}
+
+function createEBITDAChart() {
+  const ctx = document.getElementById("ebitdaChart");
+  if (!ctx) return;
+
+  return new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["2021", "2022", "2023"],
+      datasets: [
+        {
+          label: "EBITDA",
+          data: [6.4, 6.0, 7.3],
+          backgroundColor: "rgba(229, 9, 20, 0.8)",
+          yAxisID: "y",
+        },
+        {
+          label: "Margin %",
+          data: [21.5, 19.2, 21.7],
+          type: "line",
+          borderColor: "#141414",
           yAxisID: "y1",
         },
       ],
@@ -24,130 +106,67 @@ function initializeCharts() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "top",
+          align: "end",
+        },
+      },
       scales: {
         y: {
-          beginAtZero: false,
-          title: {
-            display: true,
-            text: "Revenue ($B)",
+          position: "left",
+          ticks: {
+            callback: (value) => `$${value}B`,
           },
         },
         y1: {
-          beginAtZero: true,
           position: "right",
-          title: {
-            display: true,
-            text: "Margin (%)",
-          },
           grid: {
             drawOnChartArea: false,
           },
-        },
-      },
-    },
-  });
-
-  // Content Strategy Chart - ROI vs Engagement
-  const contentCtx = document.getElementById("contentChart").getContext("2d");
-  window.contentChart = new Chart(contentCtx, {
-    type: "bubble",
-    data: {
-      datasets: [
-        {
-          label: "Content Categories",
-          data: [],
-          backgroundColor: "rgba(229, 9, 20, 0.5)",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        x: {
-          title: {
-            display: true,
-            text: "ROI",
-          },
-        },
-        y: {
-          title: {
-            display: true,
-            text: "Engagement Rate",
-          },
-        },
-      },
-    },
-  });
-
-  // Regional Analysis Chart
-  const regionalCtx = document.getElementById("regionalChart").getContext("2d");
-  window.regionalChart = new Chart(regionalCtx, {
-    type: "radar",
-    data: {
-      labels: [
-        "Revenue",
-        "Subscribers",
-        "ARPU",
-        "Margin",
-        "Penetration",
-        "Growth",
-      ],
-      datasets: [
-        {
-          label: "UCAN",
-          data: [],
-          fill: true,
-          backgroundColor: "rgba(229, 9, 20, 0.2)",
-          borderColor: "rgb(229, 9, 20)",
-          pointBackgroundColor: "rgb(229, 9, 20)",
-          pointBorderColor: "#fff",
-          pointHoverBackgroundColor: "#fff",
-          pointHoverBorderColor: "rgb(229, 9, 20)",
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-    },
-  });
-
-  // Synergy Tracking Chart
-  const synergyCtx = document.getElementById("synergyChart").getContext("2d");
-  window.synergyChart = new Chart(synergyCtx, {
-    type: "bar",
-    data: {
-      labels: [],
-      datasets: [
-        {
-          label: "Target",
-          data: [],
-          backgroundColor: "rgba(229, 9, 20, 0.2)",
-          borderColor: "rgb(229, 9, 20)",
-          borderWidth: 1,
-        },
-        {
-          label: "Achieved",
-          data: [],
-          backgroundColor: "rgba(45, 55, 72, 0.2)",
-          borderColor: "rgb(45, 55, 72)",
-          borderWidth: 1,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: "Value ($M)",
+          ticks: {
+            callback: (value) => `${value}%`,
           },
         },
       },
     },
   });
 }
+
+function createROIChart() {
+  const ctx = document.getElementById("contentROIChart");
+  if (!ctx) return;
+
+  return new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Original", "Licensed", "Overall"],
+      datasets: [
+        {
+          label: "ROI Multiple",
+          data: [1.45, 1.12, 1.32],
+          backgroundColor: ["#e50914", "#141414", "#6b7280"],
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false,
+        },
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: (value) => `${value}x`,
+          },
+        },
+      },
+    },
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initializeCharts);

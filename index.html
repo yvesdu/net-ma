@@ -3,82 +3,80 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Netflix M&A Dashboard</title>
-    <!-- Include Chart.js for visualizations -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Include custom styles -->
+    <title>Netflix M&A Analysis Dashboard</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
   </head>
   <body>
     <div class="dashboard">
-      <!-- Header -->
-      <header class="header">
-        <div class="header-title">
-          <h1>Netflix M&A Analysis</h1>
-          <p class="subtitle">Strategic Dashboard</p>
-        </div>
-        <div class="scenario-buttons">
-          <button class="btn active" data-scenario="base">Base Case</button>
-          <button class="btn" data-scenario="bull">Bull Case</button>
-          <button class="btn" data-scenario="bear">Bear Case</button>
-        </div>
-      </header>
+      <div class="header">
+        <h1>Netflix M&A Analysis Dashboard</h1>
+        <div class="date">Data as of December 31, 2023</div>
+      </div>
 
-      <!-- Key Metrics -->
       <div class="metrics-grid">
         <div class="metric-card">
           <div class="metric-header">Revenue</div>
           <div class="metric-value">$33.7B</div>
-          <div class="metric-change positive">+7.2%</div>
+          <div class="metric-change">+7% YoY</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-header">EBITDA</div>
+          <div class="metric-value">$7.3B</div>
+          <div class="metric-change">+21% YoY</div>
         </div>
         <div class="metric-card">
           <div class="metric-header">Operating Margin</div>
-          <div class="metric-value">21.0%</div>
-          <div class="metric-change positive">+3.0%</div>
+          <div class="metric-value">21%</div>
+          <div class="metric-change">+3pp YoY</div>
         </div>
         <div class="metric-card">
           <div class="metric-header">Subscribers</div>
           <div class="metric-value">260.3M</div>
-          <div class="metric-change positive">+29.5M</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-header">ARPU</div>
-          <div class="metric-value">$11.64</div>
-          <div class="metric-change negative">-0.12</div>
+          <div class="metric-change">+29.5M</div>
         </div>
       </div>
 
-      <!-- Main Content -->
-      <div class="main-content">
-        <div class="tabs">
-          <button class="tab-btn active" data-tab="overview">Overview</button>
-          <button class="tab-btn" data-tab="content">Content Strategy</button>
-          <button class="tab-btn" data-tab="regional">Regional Analysis</button>
-          <button class="tab-btn" data-tab="synergies">Synergy Tracking</button>
-        </div>
-
-        <!-- Tab Content -->
-        <div class="tab-content active" id="overview">
+      <div class="chart-section">
+        <div class="chart-row">
           <div class="chart-container">
-            <canvas id="overviewChart"></canvas>
+            <h3>Revenue & EBITDA Trends</h3>
+            <canvas id="financialChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3>Regional Revenue Mix</h3>
+            <canvas id="regionChart"></canvas>
           </div>
         </div>
-
-        <div class="tab-content" id="content">
+        <div class="chart-row">
           <div class="chart-container">
-            <canvas id="contentChart"></canvas>
+            <h3>EBITDA & Margin</h3>
+            <canvas id="ebitdaChart"></canvas>
+          </div>
+          <div class="chart-container">
+            <h3>Content ROI</h3>
+            <canvas id="contentROIChart"></canvas>
           </div>
         </div>
+      </div>
 
-        <div class="tab-content" id="regional">
-          <div class="chart-container">
-            <canvas id="regionalChart"></canvas>
+      <div class="summary-section">
+        <h2>M&A Analysis Summary</h2>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>Growth</h3>
+            <div>Revenue CAGR: 13.2%</div>
+            <div>EBITDA CAGR: 15.4%</div>
           </div>
-        </div>
-
-        <div class="tab-content" id="synergies">
-          <div class="chart-container">
-            <canvas id="synergyChart"></canvas>
+          <div class="summary-card">
+            <h3>Financial Health</h3>
+            <div>Debt/EBITDA: 2.1x</div>
+            <div>FCF: $6.9B</div>
+          </div>
+          <div class="summary-card">
+            <h3>Market Position</h3>
+            <div>Market Share: 29.6%</div>
+            <div>Brand Value: Strong</div>
           </div>
         </div>
       </div>
@@ -86,6 +84,5 @@
 
     <script src="data.js"></script>
     <script src="charts.js"></script>
-    <script src="app.js"></script>
   </body>
 </html>
